@@ -1,9 +1,18 @@
-import React from 'react'
+
 import Link from 'next/link'
+import { styled } from 'styled-components'
+
+// Utilized Styled Components documentation for syntax, add our css inside the variable
+const StyledHeader = styled.header`
+  background-color: #4B9CD3
+
+
+`
+
 
 const Header = () => {
   return (
-    <header>
+    <StyledHeader>
         <Link href={'/'}>Ecommerce</Link>
         <nav> 
             <Link href={'/'}>Home</Link>
@@ -12,7 +21,7 @@ const Header = () => {
             <Link href={'/account'}>Account</Link>
             <Link href={'/cart'}>Cart (0)</Link>
         </nav>
-    </header>
+    </StyledHeader>
   )
 }
 
