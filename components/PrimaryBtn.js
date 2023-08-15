@@ -1,4 +1,4 @@
-import { styled } from "styled-components"
+import { css, styled } from "styled-components"
 
 // Whatever children we pass in through props will get the button styling below
 
@@ -9,12 +9,19 @@ const StyledButton = styled.button`
     color:white;
     padding: 5px 15px;
     border-radius: 5px;
+    curdor: pointer
+    ${props => props.size === 'l' && css`
+        font-size: 1.2rem;
+        padding: 10px 20px;
+    
+    `}
 
 `
-
-const PrimaryBtn = ({children}) => {
+// Now in the featured component we have the size also being passed in so we can use that. 
+// We can just pass in the rest of the props using the spread operator
+const PrimaryBtn = ({children, ...restOfProps}) => {
   return (
-    <StyledButton>{children}</StyledButton>
+    <StyledButton {...restOfProps}>{children}</StyledButton>
   )
 }
 

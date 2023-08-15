@@ -50,8 +50,9 @@ const Featured = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     </Desc>
-                    <PrimaryBtn>Read More</PrimaryBtn>
-                    <button>Add to Cart</button>
+                    <button>Read More</button>
+                    {/* we can pass in props like size into primary btn component */}
+                    <PrimaryBtn size="l">Add to Cart</PrimaryBtn>
                 </div>
                 <Column>
                     <img src='https://capstonefilestorage.blob.core.windows.net/capstonecontainer/tkd-removebg.png'/>
