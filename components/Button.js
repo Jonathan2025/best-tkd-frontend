@@ -16,14 +16,14 @@ const StyledButton = styled.button`
       margin-right: 5px;
     }
     ${props => props.gray && css`
-        color: #374151;
-        background-color: #a1a1aa;
-        border: 1px solid #374151;
+        color: white;
+        background-color: #6b7280;
+        border: 1px solid #4b5563;
     `}
-    ${props => props.indigo && css`
-        color: #312e81;
-        background-color:#818cf8;
-        border: 1px solid #4338ca;
+    ${props => props.blue && css`
+        color: white;
+        background-color:#0369a1;
+        border: 1px solid #0ea5e9;
     `}
     ${props => props.size === 'l' && css`
         font-size: 1.2rem;
