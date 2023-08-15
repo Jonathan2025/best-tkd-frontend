@@ -4,16 +4,33 @@ import { css, styled } from "styled-components"
 
 
 const StyledButton = styled.button`
-    background-color:#818cf8;
+    
     border:0;
-    color:white;
     padding: 5px 15px;
     border-radius: 5px;
-    curdor: pointer
+    cursor: pointer;
+    display: inline-flex;
+    align-items:center;
+    svg{
+      height: 25px;
+      margin-right: 5px;
+    }
+    ${props => props.gray && css`
+        color: #374151;
+        background-color: #a1a1aa;
+        border: 1px solid #374151;
+    `}
+    ${props => props.indigo && css`
+        color: #312e81;
+        background-color:#818cf8;
+        border: 1px solid #4338ca;
+    `}
     ${props => props.size === 'l' && css`
         font-size: 1.2rem;
         padding: 10px 20px;
-    
+        svg{
+          height: 20px;
+        }
     `}
 
 `
