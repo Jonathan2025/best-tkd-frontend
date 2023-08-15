@@ -1,7 +1,7 @@
 // Here we will create a component that will have the featured product
 import Center from "./Center"
 import { styled } from "styled-components"
-
+import PrimaryBtn from "./PrimaryBtn"
 // Styled component for the background 
 const Background = styled.div`
    background-color: #003153;
@@ -30,6 +30,14 @@ const Wrapper = styled.div`
     };
 `
 
+// This will be used to center anything within the column styled component
+const Column = styled.div`
+    display: flex; 
+    align-items center;
+`
+
+
+
 const Featured = () => {
   return (
     <Background>
@@ -37,16 +45,17 @@ const Featured = () => {
         
             <Wrapper>
                 <div>
-                    <Title>New Product</Title>
+                    <Title>Complete Sparring Set</Title>
                     <Desc>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    
                     </Desc>
+                    <PrimaryBtn>Read More</PrimaryBtn>
+                    <button>Add to Cart</button>
                 </div>
-                <div>
+                <Column>
                     <img src='https://capstonefilestorage.blob.core.windows.net/capstonecontainer/tkd-removebg.png'/>
-                </div>
+                </Column>
             </Wrapper>
         </Center>
     </Background>
