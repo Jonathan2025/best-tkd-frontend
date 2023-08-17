@@ -1,5 +1,6 @@
 import { styled } from "styled-components"
-
+import Button from "./Button"
+import CartIcon from "./icons/CartIcon"
 const ProductWrapper = styled.div`
 
 
@@ -41,7 +42,7 @@ const ProductBox = ({_id, title, description, price, images}) => {
         <Title>
             {title}
         </Title>
-       
+       <Button blue={1}><CartIcon /></Button>
            
         
     </ProductWrapper>
