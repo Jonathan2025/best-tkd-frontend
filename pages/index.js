@@ -6,12 +6,11 @@ import mongooseConnect from '@/lib/mongoose'
 
 // Pass in the product as a prop
 const index = ({product}) => {
-
-  console.log('here is the product', product)
   return (
     <div>
       <Header/>
-      <Featured />
+      {/* pass in the featured product information into the featured component */}
+      <Featured product={product}/>
     </div>
   )
 }

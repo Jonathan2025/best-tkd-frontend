@@ -2,6 +2,7 @@
 import Center from "./Center"
 import { styled } from "styled-components"
 import Button from "./Button"
+import ButtonLink from "./ButtonLink"
 // Styled component for the background 
 const Background = styled.div`
    background-color: #007bb8;
@@ -13,6 +14,7 @@ const Title = styled.h1`
     margin:normal;
     font-weight: bold;
     font-size: 3rem;
+    text-align:center;
 `
 const Desc = styled.p`
     color: #D3D3D3;
@@ -24,7 +26,7 @@ const Desc = styled.p`
 // Create a wrapper that will create 2 columns for the 2 divs below (image and text) both different sizes
 const Wrapper = styled.div`
     display:grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1.3fr 1.0fr;
     gap: 40px;
     img{
         max-width: 100%
@@ -46,20 +48,17 @@ const BtnWrapper = styled.div`
 `
 
 
-const Featured = () => {
+const Featured = ({product}) => {
   return (
     <Background>
         <Center>
         
             <Wrapper>
                 <div>
-                    <Title>Complete Sparring Set</Title>
-                    <Desc>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    </Desc>
+                    <Title>{product.title}</Title>
+                    <Desc>{product.description}</Desc>
                     <BtnWrapper>
-                        <Button gray>Read More</Button>
+                        <ButtonLink href={'/products/'+product._id} gray >Read More</ButtonLink>
                         {/* we can pass in props like size into primary btn component */}
                         <Button blue>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
