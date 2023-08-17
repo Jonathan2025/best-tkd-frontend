@@ -13,7 +13,6 @@ const ImageBox = styled.div`
     padding:20px;
     height: 135px;
     text-align:center;
-
     display:flex;
     justify-content: center;
     border-radius: 10px;
@@ -29,6 +28,9 @@ const Title = styled.h3`
     margin: 0;
 `
 
+const ProductInfoBox = styled.div`
+    margin-top: 10px;
+`
 
 
 // Again the spread operator allows us to access the id, title and all other information
@@ -39,11 +41,12 @@ const ProductBox = ({_id, title, description, price, images}) => {
         <ImageBox>
             <img src={images[0]} alt=""/>
         </ImageBox>
-        <Title>
-            {title}
-        </Title>
-       <Button blue={1}><CartIcon /></Button>
-           
+        
+        <ProductInfoBox>
+            <Title>{title}</Title>
+            ${price}
+            <Button blue={1}><CartIcon/></Button>
+        </ProductInfoBox>
         
     </ProductWrapper>
    
