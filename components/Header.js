@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 import Center from './Center'
 // Utilized Styled Components documentation for syntax, add our css inside the variable
 const StyledHeader = styled.header`
-  background-color: #007bb8;
+  background-color: #181818;
 `
 
 

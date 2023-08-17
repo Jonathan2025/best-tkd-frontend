@@ -5,7 +5,7 @@ import Button from "./Button"
 import ButtonLink from "./ButtonLink"
 // Styled component for the background 
 const Background = styled.div`
-   background-color: #007bb8;
+   background-color: #181818;
    color:white;
    padding: 30px 0;
 
