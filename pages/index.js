@@ -13,7 +13,7 @@ const index = ({featuredProduct, newProducts}) => {
       <Header/>
       {/* pass in the featured product information into the featured component */}
       <Featured product={featuredProduct}/>
-      <NewProducts />
+      <NewProducts newProducts={newProducts}/>
     </div>
   )
 }

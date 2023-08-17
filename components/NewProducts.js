@@ -1,8 +1,23 @@
 
 
-const NewProducts = () => {
+import { styled } from "styled-components"
+
+const ProductsGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+`
+
+
+const NewProducts = ({newProducts}) => {
   return (
-    <div>NewProducts</div>
+    <ProductsGrid>
+        {newProducts && newProducts.map(product => (
+            <div>{product.title}</div>
+        ))}
+
+
+
+    </ProductsGrid>
   )
 }
 
