@@ -26,10 +26,29 @@ const ImageBox = styled.div`
 const Title = styled.h3`
     font-weight: normal;
     margin: 0;
+    color:white;
 `
 
 const ProductInfoBox = styled.div`
     margin-top: 10px;
+    
+`
+
+// space between pushes the first item to the left and the other item to the right
+const PriceRow = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    
+`
+
+
+const Price = styled.span`
+    color:white;
+    font-size: 18px;
+
+
 `
 
 
@@ -44,8 +63,12 @@ const ProductBox = ({_id, title, description, price, images}) => {
         
         <ProductInfoBox>
             <Title>{title}</Title>
-            ${price}
-            <Button blue={1}><CartIcon/></Button>
+
+            <PriceRow>
+                <Price>${price}</Price>
+                <Button blue={1}>Add to Cart</Button>
+            </PriceRow>
+            
         </ProductInfoBox>
         
     </ProductWrapper>
