@@ -1,13 +1,14 @@
 import { styled } from "styled-components"
 import Button from "./Button"
-import CartIcon from "./icons/CartIcon"
+
+import Link from "next/link"
 const ProductWrapper = styled.div`
 
 
 `
 
 // Image box styled component
-const ImageBox = styled.div`
+const ImageBox = styled(Link)`
     background-color: 	#787878;
     color: white;
     padding:20px;
@@ -23,10 +24,11 @@ const ImageBox = styled.div`
     }
 `
 
-const Title = styled.h3`
+const Title = styled(Link)`
     font-weight: normal;
     margin: 0;
     color:white;
+    text-decoration: none;
 `
 
 const ProductInfoBox = styled.div`
@@ -45,8 +47,9 @@ const PriceRow = styled.div`
 
 
 const Price = styled.span`
-    color:white;
-    font-size: 18px;
+    color:#568203;
+    font-size: 25px;
+    font-weight: 500;
 
 
 `
@@ -54,26 +57,27 @@ const Price = styled.span`
 
 // Again the spread operator allows us to access the id, title and all other information
 const ProductBox = ({_id, title, description, price, images}) => {
-  return (
-    <ProductWrapper>
+    const url = '/product/'+_id
+    return (
+        <ProductWrapper>
 
-        <ImageBox>
-            <img src={images[0]} alt=""/>
-        </ImageBox>
-        
-        <ProductInfoBox>
-            <Title>{title}</Title>
-
-            <PriceRow>
-                <Price>${price}</Price>
-                <Button blue={1}>Add to Cart</Button>
-            </PriceRow>
+            <ImageBox href={url}>
+                <img src={images[0]} alt=""/>
+            </ImageBox>
             
-        </ProductInfoBox>
-        
-    </ProductWrapper>
-   
-  )
+            <ProductInfoBox>
+                <Title href={url}>{title}</Title>
+
+                <PriceRow>
+                    <Price>${price}</Price>
+                    <Button blueOutline={1}>Add to Cart</Button>
+                </PriceRow>
+                
+            </ProductInfoBox>
+            
+        </ProductWrapper>
+    
+    )
 }
 
 export default ProductBox

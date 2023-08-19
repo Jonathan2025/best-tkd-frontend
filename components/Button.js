@@ -25,6 +25,11 @@ export const ButtonStyle = css`
       background-color:#0369a1;
       border: 1px solid #0ea5e9;
   `}
+  ${props => props.blueOutline && css`
+      color: #0ea5e9;
+      background-color:transparent;
+      border: 1px solid #0ea5e9;
+  `}
   ${props => props.size === 'l' && css`
       font-size: 1.2rem;
       padding: 10px 20px;
