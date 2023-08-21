@@ -2,6 +2,8 @@ import { styled } from "styled-components"
 import Button from "./Button"
 
 import Link from "next/link"
+import { useContext } from "react"
+import { CartContext } from "./CartContext"
 const ProductWrapper = styled.div`
 
 
@@ -58,6 +60,12 @@ const Price = styled.span`
 // Again the spread operator allows us to access the id, title and all other information
 const ProductBox = ({_id, title, description, price, images}) => {
     const url = '/product/'+_id
+
+
+    // call the cartContext so then we can use the addproduct function handler
+    const {addProduct} = useContext(CartContext)
+
+
     return (
         <ProductWrapper>
 
@@ -70,7 +78,8 @@ const ProductBox = ({_id, title, description, price, images}) => {
 
                 <PriceRow>
                     <Price>${price}</Price>
-                    <Button blueOutline={1}>Add to Cart</Button>
+                    {/* When we click the cart button it will add the product id to the car */}
+                    <Button blueOutline={1} onClick={() => addProduct(_id)}>Add to Cart</Button>
                 </PriceRow>
                 
             </ProductInfoBox>

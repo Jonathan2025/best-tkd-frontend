@@ -53,19 +53,8 @@ const BtnWrapper = styled.div`
 
 const Featured = ({product}) => {
 
-    // grabbing the cart context from cartContext.js and then putting the information into an object
-    const {setCartProducts} = useContext(CartContext)
-
-    // Add featured to cart is a handler function tha handles the user adding the featured item to the cart 
-    const addFeaturedToCart = () => {
-        // so pretty much for the cart it will have the previous items and ALSO the new product id
-        setCartProducts(
-            prev => [...prev, product._id]
-        )
-
-    }
-
-
+    // getting the addProduct function from cart context
+    const {addProduct} = useContext(CartContext)
 
 
     return (
@@ -79,8 +68,8 @@ const Featured = ({product}) => {
                         <BtnWrapper>
                             <ButtonLink href={'/products/'+product._id} gray={1} >Read More</ButtonLink>
                             {/* we can pass in props like size into primary btn component */}
-                            {/* for the add to cart button we make a call to the add featured product to cart handler */}
-                            <Button blue={1} onClick={addFeaturedToCart}>
+                            {/* for the add to cart button we make a call to the addProduct function inside of cart context */}
+                            <Button blue={1} onClick={() => addProduct(product._id)}>
                                 <CartIcon/>
 
                                 Add to Cart</Button>
