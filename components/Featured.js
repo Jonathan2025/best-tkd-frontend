@@ -4,6 +4,8 @@ import { styled } from "styled-components"
 import Button from "./Button"
 import ButtonLink from "./ButtonLink"
 import CartIcon from "./icons/CartIcon"
+import { useContext } from "react"
+import { CartContext } from "./CartContext"
 // Styled component for the background 
 const Background = styled.div`
    background-color: #181818;
@@ -50,32 +52,49 @@ const BtnWrapper = styled.div`
 
 
 const Featured = ({product}) => {
-  return (
-    <Background>
-        <Center>
-        
-            <Wrapper>
-                <div>
-                    <Title>{product.title}</Title>
-                    <Desc>{product.description}</Desc>
-                    <BtnWrapper>
-                        <ButtonLink href={'/products/'+product._id} gray={1} >Read More</ButtonLink>
-                        {/* we can pass in props like size into primary btn component */}
-                        <Button blue={1}>
-                            <CartIcon/>
 
-                            Add to Cart</Button>
-                    </BtnWrapper>
-                   
-                </div>
-                <Column>
-                    <img src='https://capstonefilestorage.blob.core.windows.net/capstonecontainer/tkd-removebg.png'/>
-                </Column>
-            </Wrapper>
-        </Center>
-    </Background>
-    
-  )
+    // grabbing the cart context from cartContext.js and then putting the information into an object
+    const {setCartProducts} = useContext(CartContext)
+
+    // Add featured to cart is a handler function tha handles the user adding the featured item to the cart 
+    const addFeaturedToCart = () => {
+        // so pretty much for the cart it will have the previous items and ALSO the new product id
+        setCartProducts(
+            prev => [...prev, product._id]
+        )
+
+    }
+
+
+
+
+    return (
+        <Background>
+            <Center>
+            
+                <Wrapper>
+                    <div>
+                        <Title>{product.title}</Title>
+                        <Desc>{product.description}</Desc>
+                        <BtnWrapper>
+                            <ButtonLink href={'/products/'+product._id} gray={1} >Read More</ButtonLink>
+                            {/* we can pass in props like size into primary btn component */}
+                            {/* for the add to cart button we make a call to the add featured product to cart handler */}
+                            <Button blue={1} onClick={addFeaturedToCart}>
+                                <CartIcon/>
+
+                                Add to Cart</Button>
+                        </BtnWrapper>
+                    
+                    </div>
+                    <Column>
+                        <img src='https://capstonefilestorage.blob.core.windows.net/capstonecontainer/tkd-removebg.png'/>
+                    </Column>
+                </Wrapper>
+            </Center>
+        </Background>
+        
+    )
 }
 
 export default Featured

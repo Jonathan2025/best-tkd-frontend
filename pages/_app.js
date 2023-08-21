@@ -1,3 +1,4 @@
+import CartContextProvider from "@/components/CartContext"
 import { createGlobalStyle } from "styled-components"
 
 
@@ -16,7 +17,11 @@ export default function App({ Component, pageProps }) {
   return(
     <>
       <GlobalStyles/>
-      <Component {...pageProps} />
+      
+      {/* Here we are using the cart context provider and passing in the component as children */}
+      <CartContextProvider> 
+        <Component {...pageProps} />
+      </CartContextProvider>
     </>
   )
 
