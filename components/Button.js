@@ -20,6 +20,17 @@ export const ButtonStyle = css`
       background-color: #6b7280;
       border: 1px solid #4b5563;
   `}
+  ${props => props.green && css`
+      color: white;
+      background-color: 	#00693E;
+  `}
+  ${props => props.block && css`
+      display: block;
+      width: 100%; 
+  `}
+
+
+
   ${props => props.blue && css`
       color: white;
       background-color:#0369a1;
