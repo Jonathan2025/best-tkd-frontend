@@ -8,6 +8,9 @@ import { useContext } from "react"
 import { CartContext } from "@/components/CartContext"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Table from "@/components/Table"
+
+
 
 // Here for the wrapper we want to make 2 columns
 const ColumnsWrapper = styled.div`
@@ -22,6 +25,31 @@ const Box = styled.div`
   background-color: #787878;
   border-radius: 10px;
   padding: 20px;
+`
+
+// to contain the image and title
+const ProductInfoCell = styled.td`
+  padding: 10px 0;
+  
+`
+
+const ProductImageBox = styled.div`
+  width: 90px;
+  height: 90px;
+  padding: 10px;
+  background-color: #E8E8E8;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+
+
+  border-radius: 10px;
+  img{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+
+  }
 `
 
 const CartPage = () => {
@@ -50,14 +78,14 @@ const CartPage = () => {
         <Center>
           <ColumnsWrapper>
             <Box>
-              <h2>Here are your items</h2>
+              <h2>Cart</h2>
               {/* If we have no products in cart */}
               {!products && (
                 <div>Your Cart is Empty </div>
               )}
 
                 {products &&(
-                  <table>
+                  <Table>
                     <thead>
                       <tr>
                         <th>Product</th>
@@ -74,21 +102,30 @@ const CartPage = () => {
                         
                         {products.map(product => (
                           <tr>
-                            <td>{product.title}</td>
+                            <ProductInfoCell>
+                              <ProductImageBox>
+                                <img src={product.images[0]} />
+                              </ProductImageBox>
+                             
+                              {product.title}
+                              </ProductInfoCell>
                             <td>
                               {/* Here we want to filter for the specific product and the respective quantity */}
                               {cartProducts.filter(id => id === product._id).length}
                             </td>
-                            <td>Price</td>
+                              {/* To get the total price all we do is quantity x price per unit */}
+                            <td>${cartProducts.filter(id => id === product._id).length * product.price}</td>
                            
-                      
+              
                           </tr>
+    
                         ))}
+                     
                       </>
                       </tbody>
 
 
-                    </table>
+                    </Table>
                     )}
 
 
