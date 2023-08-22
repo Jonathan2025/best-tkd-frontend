@@ -50,23 +50,51 @@ const CartPage = () => {
         <Center>
           <ColumnsWrapper>
             <Box>
+              <h2>Here are your items</h2>
               {/* If we have no products in cart */}
               {!products && (
                 <div>Your Cart is Empty </div>
               )}
 
-              {/* if we have products in our cart */}
-              {products &&(
-                <>
-                  <h2>Here are your items</h2>
-                  {products.map(product => (
-                  <div>{product.title}</div>
-                ))}
-                
-                </>
-                
+                {products &&(
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
 
-              )}
+
+                    <tbody>
+                    {/* if we have products in our cart */}
+                    
+                      <>
+                        
+                        {products.map(product => (
+                          <tr>
+                            <td>{product.title}</td>
+                            <td>
+                              {/* Here we want to filter for the specific product and the respective quantity */}
+                              {cartProducts.filter(id => id === product._id).length}
+                            </td>
+                            <td>Price</td>
+                           
+                      
+                          </tr>
+                        ))}
+                      </>
+                      </tbody>
+
+
+                    </table>
+                    )}
+
+
+
+
+      
 
 
             </Box>
