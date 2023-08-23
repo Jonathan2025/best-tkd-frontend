@@ -60,7 +60,7 @@ const QuantityLabel = styled.span`
 const CartPage = () => {
 
 
-  const {cartProducts, addProduct} = useContext(CartContext)
+  const {cartProducts, addProduct, decreaseProduct} = useContext(CartContext)
   // console.log(cartProducts)
 
   const [products, setProducts] = useState([])
@@ -79,6 +79,10 @@ const CartPage = () => {
   // This is the function handler for when we increase the quantity, taking in the product.id as a parameter
   const increaseQuantity = (id) => {
     addProduct(id) // we get the add product from our use context above
+  }
+
+  const decreaseQuantity = (id) => {
+    decreaseProduct(id) // we get the add product from our use context above
   }
 
 
@@ -130,7 +134,7 @@ const CartPage = () => {
                              </QuantityLabel>
 
                              
-                              <PrimaryBtn red={1}>-</PrimaryBtn>
+                              <PrimaryBtn red={1} onClick={() => decreaseQuantity(product._id)}>-</PrimaryBtn>
                               
                             </td>
                               {/* To get the total price all we do is quantity x price per unit */}
