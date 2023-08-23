@@ -86,6 +86,13 @@ const CartPage = () => {
   }
 
 
+  // Now for each of the product we need to get the total cost 
+  let total = 0 
+  for (const productId of cartProducts){
+    const price = products.find(p => p._id === productId)?.price || 0 
+    total += price
+  }
+
 
   return (
     <>
@@ -146,6 +153,13 @@ const CartPage = () => {
                         ))}
                      
                       </>
+                      <tr>
+                          <td></td>
+                          <td>Total Price</td>
+                          <td>${total}</td>
+
+
+                      </tr>
                       </tbody>
 
 
