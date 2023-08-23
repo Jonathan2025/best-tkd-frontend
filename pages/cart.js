@@ -15,7 +15,7 @@ import Table from "@/components/Table"
 // Here for the wrapper we want to make 2 columns
 const ColumnsWrapper = styled.div`
   display: grid; 
-  grid-template-columns: 1.1fr .9fr;
+  grid-template-columns: 1.3fr .7fr;
   gap: 40px;
   margin-top: 40px;
 
@@ -52,10 +52,15 @@ const ProductImageBox = styled.div`
   }
 `
 
+const QuantityLabel = styled.span`
+  padding: 0 18px;
+
+`
+
 const CartPage = () => {
 
 
-  const {cartProducts} = useContext(CartContext)
+  const {cartProducts, addProduct} = useContext(CartContext)
   // console.log(cartProducts)
 
   const [products, setProducts] = useState([])
@@ -69,6 +74,12 @@ const CartPage = () => {
       })
     }
   }, [cartProducts])
+
+
+  // This is the function handler for when we increase the quantity, taking in the product.id as a parameter
+  const increaseQuantity = (id) => {
+    addProduct(id) // we get the add product from our use context above
+  }
 
 
 
@@ -111,7 +122,16 @@ const CartPage = () => {
                               </ProductInfoCell>
                             <td>
                               {/* Here we want to filter for the specific product and the respective quantity */}
-                              {cartProducts.filter(id => id === product._id).length}
+                              
+                              
+                              <PrimaryBtn blue={1} onClick={() => increaseQuantity(product._id)}>+</PrimaryBtn>
+                             <QuantityLabel>
+                             {cartProducts.filter(id => id === product._id).length}
+                             </QuantityLabel>
+
+                             
+                              <PrimaryBtn red={1}>-</PrimaryBtn>
+                              
                             </td>
                               {/* To get the total price all we do is quantity x price per unit */}
                             <td>${cartProducts.filter(id => id === product._id).length * product.price}</td>

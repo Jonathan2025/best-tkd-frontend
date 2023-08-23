@@ -36,6 +36,11 @@ export const ButtonStyle = css`
       background-color:#0369a1;
       border: 1px solid #0ea5e9;
   `}
+  ${props => props.red && css`
+      color: white;
+      background-color: #e62020;
+      border: 1px solid #8B0000;
+  `}
   ${props => props.blueOutline && css`
       color: #0ea5e9;
       background-color:transparent;
