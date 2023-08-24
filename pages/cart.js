@@ -9,7 +9,7 @@ import { CartContext } from "@/components/CartContext"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Table from "@/components/Table"
-
+import Input from "@/components/Input"
 
 
 // Here for the wrapper we want to make 2 columns
@@ -56,6 +56,15 @@ const QuantityLabel = styled.span`
   padding: 0 18px;
 
 `
+const CityComponent = styled.div`
+  display: flex; 
+  gap: 5px;
+
+`
+
+
+
+
 
 const CartPage = () => {
 
@@ -64,6 +73,18 @@ const CartPage = () => {
   // console.log(cartProducts)
 
   const [products, setProducts] = useState([])
+
+  // Create useStates for the input fields 
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [city, setCity] = useState('')
+  const [zip, setZip] = useState('')
+  const [state, setState] = useState('')
+  const [address, setAddress] = useState('')
+  const [country, setCountry] = useState('')
+
+
+
 
   // put the cart products into a useState
   useEffect(() => {
@@ -102,11 +123,12 @@ const CartPage = () => {
             <Box>
               <h2>Cart</h2>
               {/* If we have no products in cart */}
-              {!products && (
+              {!cartProducts?.length && (
                 <div>Your Cart is Empty </div>
               )}
 
-                {products &&(
+                {products.length > 0 &&(
+           
                   <Table>
                     <thead>
                       <tr>
@@ -135,13 +157,13 @@ const CartPage = () => {
                               {/* Here we want to filter for the specific product and the respective quantity */}
                               
                               
-                              <PrimaryBtn blue={1} onClick={() => increaseQuantity(product._id)}>+</PrimaryBtn>
+                              <PrimaryBtn green={1} onClick={() => increaseQuantity(product._id)}>+</PrimaryBtn>
                              <QuantityLabel>
                              {cartProducts.filter(id => id === product._id).length}
                              </QuantityLabel>
 
                              
-                              <PrimaryBtn red={1} onClick={() => decreaseQuantity(product._id)}>-</PrimaryBtn>
+                              <PrimaryBtn green={1} onClick={() => decreaseQuantity(product._id)}>-</PrimaryBtn>
                               
                             </td>
                               {/* To get the total price all we do is quantity x price per unit */}
@@ -164,6 +186,7 @@ const CartPage = () => {
 
 
                     </Table>
+              
                     )}
 
 
@@ -175,6 +198,54 @@ const CartPage = () => {
             </Box>
             <Box> Box 2
               <h2>Order Information</h2>
+              {/* For each of the inputs create an onChange field that will change based on what is entered */}
+              <Input 
+                type='text' 
+                placeholder='Name' 
+                value={name} 
+                onChange={event => setName(event.target.value)}
+                />
+              <Input 
+                type = 'text' 
+                placeholder = 'Email'
+                value = {email}
+                onChange = {event => setEmail(event.target.value)}
+                />
+              <Input 
+                type='text' 
+                placeholder='Address'
+                value={address} 
+                onChange={event => setAddress(event.target.value)}
+                />
+              <CityComponent>
+                <Input 
+                  type='text' 
+                  placeholder='City'
+                  value={city} 
+                  onChange={event => setCity(event.target.value)}
+                  />
+                <Input 
+                  type='text' 
+                  placeholder='State'
+                  value={state} 
+                  onChange={event => setState(event.target.value)}
+                  />
+
+              </CityComponent>
+              
+              <Input 
+                type='text' 
+                placeholder='Zip'
+                value={zip} 
+                onChange={event => setZip(event.target.value)}
+                />
+              <Input 
+                type='text' 
+                placeholder='Country'
+                value={country} 
+                onChange={event => setCountry(event.target.value)}
+                />
+
               <PrimaryBtn green={1}>Continue to Payment</PrimaryBtn>
             </Box>
           
