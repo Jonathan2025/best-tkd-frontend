@@ -198,55 +198,71 @@ const CartPage = () => {
             </Box>
             <Box> Box 2
               <h2>Order Information</h2>
+
+              {/* The forms post method sends form data as an HTTP post transaction */}
+              {/* The action attribute specifies where to send the form data when a form is submitted */}
+              <form method = 'post' action = '/api/checkout'>
+
+
+
+
               {/* For each of the inputs create an onChange field that will change based on what is entered */}
               <Input 
-                type='text' 
-                placeholder='Name' 
-                value={name} 
+                type ='text' 
+                placeholder = 'Name' 
+                value= {name} 
+                name = 'name'
                 onChange={event => setName(event.target.value)}
                 />
               <Input 
                 type = 'text' 
                 placeholder = 'Email'
                 value = {email}
+                name = 'email'
                 onChange = {event => setEmail(event.target.value)}
                 />
               <Input 
-                type='text' 
-                placeholder='Address'
-                value={address} 
-                onChange={event => setAddress(event.target.value)}
+                type = 'text' 
+                placeholder = 'Address'
+                value = {address} 
+                name = 'address'
+                onChange = {event => setAddress(event.target.value)}
                 />
               <CityComponent>
                 <Input 
                   type='text' 
                   placeholder='City'
                   value={city} 
+                  name = 'city'
                   onChange={event => setCity(event.target.value)}
                   />
                 <Input 
-                  type='text' 
-                  placeholder='State'
-                  value={state} 
+                  type = 'text' 
+                  placeholder = 'State'
+                  value ={state} 
+                  name = 'state'
                   onChange={event => setState(event.target.value)}
                   />
 
               </CityComponent>
               
               <Input 
-                type='text' 
-                placeholder='Zip'
-                value={zip} 
-                onChange={event => setZip(event.target.value)}
+                type = 'text' 
+                placeholder = 'Zip'
+                value = {zip} 
+                name = 'zip'
+                onChange = {event => setZip(event.target.value)}
                 />
               <Input 
-                type='text' 
-                placeholder='Country'
-                value={country} 
-                onChange={event => setCountry(event.target.value)}
+                type = 'text' 
+                placeholder = 'Country'
+                value = {country} 
+                name = 'country'
+                onChange = {event => setCountry(event.target.value)}
                 />
 
-              <PrimaryBtn green={1}>Continue to Payment</PrimaryBtn>
+              <PrimaryBtn green={1} type='submit'>Continue to Payment</PrimaryBtn>
+            </form>
             </Box>
           
           </ColumnsWrapper>
