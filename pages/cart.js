@@ -261,6 +261,12 @@ const CartPage = () => {
                 onChange = {event => setCountry(event.target.value)}
                 />
 
+              {/* Right now we need to store the products that are in our cart and save it as input */}
+              <input 
+                type = "hidden" 
+                name="products"
+                value = {cartProducts.join(',')} 
+              />
               <PrimaryBtn green={1} type='submit'>Continue to Payment</PrimaryBtn>
             </form>
             </Box>
