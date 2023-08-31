@@ -46,7 +46,16 @@ const Header = () => {
       {/* Now we want to put everything into our centered styled component */}
       <Center>
         <Wrapper>
-          <StyledLogo href={'/'}>Best Taekwondo Online</StyledLogo>
+          {/* We dont want the aws information exposed so we use ENV link for our logo */}
+          <a href='/'>
+            <img 
+            src={process.env.TKD_LOGO}
+            width="150"
+            height="80"
+            />
+          </a>
+          
+          {/* <StyledLogo href={'/'}>Best Taekwondo Online</StyledLogo> */}
             <StyledNav> 
                 <NavLink href={'/'}>Home</NavLink>
                 <NavLink href={'/products'}>All Products</NavLink>

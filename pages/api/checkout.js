@@ -12,8 +12,8 @@ const checkoutHandler = (req,res) => {
     // remember products is the array of product ids in the cart
     const {name, email, city, zip, address, country, products} = req.body
     const productIds = products.split(',') // these are all the ids including duplicates 
-    const unique Ids = [...newSet(productIds)]// using set will get the unique ids
- 
+    const uniqueIds = [...newSet(productIds)]// using set will get the unique ids
+    
 }
 
 export default checkoutHandler
