@@ -47,8 +47,20 @@ const checkoutHandler = async(req,res) => {
     }
 
 
+    // From the information we create a orderDocument, paid set to false initially
 
-    res.json({cartItems})
+    const orderDoc = await Order.create({
+        cartItems, 
+        name, 
+        email, 
+        address, 
+        city, 
+        state, 
+        zip, 
+        country,
+        paid:false, 
+
+    })
 }
 
 export default checkoutHandler
