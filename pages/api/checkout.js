@@ -1,6 +1,9 @@
 import mongooseConnect from '@/lib/mongoose'
 import Product from '@/models/Product'
-import React from 'react'
+import Order from '@/models/Order'
+
+// Now that we installed stripe we will need to create a stripe account and get the secret key
+const stripe = require('stripe')('sk_test_...');
 
 const checkoutHandler = async(req,res) => {
     // When the user checks out, it should be a POST request
