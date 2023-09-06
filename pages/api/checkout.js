@@ -3,7 +3,7 @@ import Product from '@/models/Product'
 import Order from '@/models/Order'
 
 // Now that we installed stripe we will need to create a stripe account and get the secret key
-const stripe = require('stripe')('sk_test_...');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 const checkoutHandler = async(req,res) => {
     // When the user checks out, it should be a POST request
@@ -13,9 +13,9 @@ const checkoutHandler = async(req,res) => {
     }
      
 
-    // Otherwise we should be able to get the user information from req.body
+    // Otherwise we should be able to get the user information from req.bodynpm run
     // remember products is the array of product ids in the cart
-    const {name, email, city, zip, address, country, products} = req.body
+    const {name, email, city, state, zip, address, country, products} = req.body
 
 
     await mongooseConnect() // import mongoose so that we can then access the products model 
@@ -40,7 +40,7 @@ const checkoutHandler = async(req,res) => {
                 price_data: {
                     currency: 'USD',
                     product_data: {name: productInfo.title}, 
-                    unit_amount: quantity * productInfo.price,
+                    unit_amount: quantity * productInfo.price * 100, // When we send to stripe we need the format to be 2 decimal places
                 }
 
 
@@ -64,6 +64,40 @@ const checkoutHandler = async(req,res) => {
         paid:false, 
 
     })
+
+
+
+
+    // Now based on documentation we create a stripe checkout session 
+    const session = await stripe.checkout.sessions.create({
+        line_items: cartItems, 
+        mode:'payment',
+        customer_email: email, 
+        // From here we will need 2 URLs
+        // Success url is the url the user will be redirected to the cart IF everything is correct/ success is true
+        success_url: process.env.SUCCESS_URL +'cart?success=true',
+        cancel_url: process.env.SUCCESS_URL +'cart?cancelled=true',
+        // metadata is the data that we want to send 
+        metadata:{orderId:orderDoc._id.toString()}
+    })
+
+
+    // Now we need to redirect the user after they have checked out
+    res.json({
+        url: session.url
+    })
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 export default checkoutHandler
