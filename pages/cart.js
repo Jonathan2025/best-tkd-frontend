@@ -107,12 +107,45 @@ const CartPage = () => {
   }
 
 
+  // Pretty much instead of having a form we created a createPayment function 
+  const createPayment = async() => {
+    // we send a post request the checkout api, all of the information from the form below 
+    const response = await axios.post('/api/checkout', {
+      name, email, city, state, zip, address, country, cartProducts
+    })
+
+    // if inside response.data we have a url, which again is the URL given by stripe for payment, then we want to go to it 
+    if (response.data.url){
+      // since the stripe url is OUTSIDE of our application, we can use window.location to bring us to stripe for payment
+      window.location = response.data.url
+    }
+  }
+
+
   // Now for each of the product we need to get the total cost 
   let total = 0 
   for (const productId of cartProducts){
     const price = products.find(p => p._id === productId)?.price || 0 
     total += price
   }
+
+
+  // If the payment was successful, then we will let the user know
+  if (window.location.href.includes('success')){
+    return(
+      <>
+        <Header />
+        <Center>
+          <ColumnsWrapper>
+            <Box> 
+              <h1>Thank you for your Payment. Your order is now being processed</h1>
+            </Box>
+          </ColumnsWrapper>
+        </Center>
+      </>
+    )
+  }
+
 
 
   return (
@@ -199,9 +232,7 @@ const CartPage = () => {
             <Box> Box 2
               <h2>Order Information</h2>
 
-              {/* The forms post method sends form data as an HTTP post transaction */}
-              {/* The action attribute specifies where to send the form data when a form is submitted */}
-              <form method = 'post' action = '/api/checkout'>
+       
 
 
 
@@ -261,14 +292,9 @@ const CartPage = () => {
                 onChange = {event => setCountry(event.target.value)}
                 />
 
-              {/* Right now we need to store the products that are in our cart and save it as input */}
-              <input 
-                type = "hidden" 
-                name="products"
-                value = {cartProducts.join(',')} 
-              />
-              <PrimaryBtn green={1} type='submit'>Continue to Payment</PrimaryBtn>
-            </form>
+              {/* Instead of having a form we are use our own createPayment handler */}
+              <PrimaryBtn green={1} onClick={createPayment}>Continue to Payment</PrimaryBtn>
+      
             </Box>
           
           </ColumnsWrapper>

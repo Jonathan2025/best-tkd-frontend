@@ -15,7 +15,7 @@ const checkoutHandler = async(req,res) => {
 
     // Otherwise we should be able to get the user information from req.bodynpm run
     // remember products is the array of product ids in the cart
-    const {name, email, city, state, zip, address, country, products} = req.body
+    const {name, email, city, state, zip, address, country, cartProducts} = req.body
 
 
     await mongooseConnect() // import mongoose so that we can then access the products model 
@@ -23,7 +23,7 @@ const checkoutHandler = async(req,res) => {
 
 
 
-    const productIds = products.split(',') // these are all the ids including duplicates 
+    const productIds = cartProducts // these are all the ids including duplicates 
     const uniqueIds = [...new Set(productIds)]// using set will get the unique ids
     const productInfos = await Product.find({_id:uniqueIds}) // so here we want to look through products for the products in the cart 
     
@@ -82,7 +82,7 @@ const checkoutHandler = async(req,res) => {
     })
 
 
-    // Now we need to redirect the user after they have checked out
+    // Now we need to redirect the user after they have completed the payment on stripe
     res.json({
         url: session.url
     })
