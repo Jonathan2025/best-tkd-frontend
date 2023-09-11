@@ -10,6 +10,8 @@ const OrderSchema = new Schema({
     address: String, 
     country: String, 
     paid: Boolean
+}, {
+    timestamps:true,
 })  
 
 // After creating a schema, we created a mongoose model based on that schema 

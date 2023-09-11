@@ -36,8 +36,16 @@ const CartContextProvider = ({children}) => {
             const updatedCart = [...cartProducts]
             updatedCart.splice(productIndex, 1)
             setCartProducts(updatedCart) // Update the cart state
+        }
     }
-}
+
+
+
+
+    // Clear cart function and then add it to the cartContext provider below 
+    const clearCart = () => {
+        setCartProducts([])
+    }
 
 
     // The first useEffect will add the items from localstorage to the cart products
@@ -58,7 +66,7 @@ const CartContextProvider = ({children}) => {
     // we pass in the children into the context provider, for values we want to be able to add to the cart products which is why we added them to value
     return(
 
-        <CartContext.Provider value={{cartProducts, addProduct, decreaseProduct}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{cartProducts, addProduct, decreaseProduct, clearCart}}>{children}</CartContext.Provider>
     )
 
 

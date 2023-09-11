@@ -68,8 +68,8 @@ const CityComponent = styled.div`
 
 const CartPage = () => {
 
-
-  const {cartProducts, addProduct, decreaseProduct} = useContext(CartContext)
+  // From the cartContext we are able to get the cartProducts and functions like clearCart
+  const {cartProducts, addProduct, decreaseProduct, clearCart} = useContext(CartContext)
   // console.log(cartProducts)
 
   const [products, setProducts] = useState([])
@@ -84,9 +84,12 @@ const CartPage = () => {
   const [country, setCountry] = useState('')
 
 
+  // We have the error with window being undefined so we can utilize a useState 
+  const [isSuccess, setIsSuccess] = useState(false)
 
 
-  // put the cart products into a useState
+
+  // put the cart products into a useEffect
   useEffect(() => {
     if (cartProducts){
       // Make a post request using axios, We will send the ids as the body
@@ -95,6 +98,23 @@ const CartPage = () => {
       })
     }
   }, [cartProducts])
+
+  // If we have an order success, then we want to clear the cart IF we have window 
+  useEffect(()=> {
+    if (window?.location.href.includes('success')){
+      setIsSuccess(true)
+      clearCart()
+    }
+    // Otherwise if the window is underfined then just exit out the useEffect
+    if (typeof window === 'undefined') {
+      return
+    }
+    
+  }, [])
+
+
+
+
 
 
   // This is the function handler for when we increase the quantity, taking in the product.id as a parameter
@@ -131,7 +151,7 @@ const CartPage = () => {
 
 
   // If the payment was successful, then we will let the user know
-  if (window.location.href.includes('success')){
+  if (isSuccess){
     return(
       <>
         <Header />
