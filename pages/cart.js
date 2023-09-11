@@ -25,6 +25,7 @@ const Box = styled.div`
   background-color: #787878;
   border-radius: 10px;
   padding: 20px;
+  color:white;
 `
 
 // to contain the image and title
@@ -160,7 +161,7 @@ const CartPage = () => {
         <Center>
           <ColumnsWrapper>
             <Box> 
-              <h1>Thank you for your Payment. Your order is now being processed</h1>
+              <h1>Thank you for your Payment. Your order is now being processed :)</h1>
             </Box>
           </ColumnsWrapper>
         </Center>
