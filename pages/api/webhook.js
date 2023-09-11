@@ -34,6 +34,9 @@ const webhookHandler = async(req,res) => {
   }
 }
 
-
+// we are going to create a configuration setting to disable a bodyParser
+export const config = {
+    api: {bodyParser:false}
+}
 
 export default webhookHandler

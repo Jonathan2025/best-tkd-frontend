@@ -1,0 +1,31 @@
+                                            Citations (APA Format)
+
+1) Create Next JS App 
+npm. (2023, August 18). Create-next-app. https://www.npmjs.com/package/create-next-app 
+
+2) E-Commerce Video 
+Coding With David. (2023, April 11). Build a fullstack e-commerce using next.js (react.js, Mongo, tailwind, styled components). YouTube. https://www.youtube.com/watch?v=dTFXufTgfOE 
+
+3) Install Tailwindcss
+tailwindcss. (n.d.). Install tailwind CSS with next.js. Tailwind CSS. https://tailwindcss.com/docs/guides/nextjs 
+
+4) Fixing Unknown Rule @tailwindcss
+Copes, F. (2022, June 27). How to fix unknown at rule @tailwindcss (unknownatrules) in vs code. RSS. https://flaviocopes.com/fix-unknown-at-rule-tailwind/ 
+
+5) Next Auth JS Authentication
+Nextauth.js. NextAuth.js. (n.d.). https://next-auth.js.org/ 
+
+6) Mongo DB for Next JS
+@auth/mongodb-adapter. Auth.js. (n.d.). https://authjs.dev/reference/adapter/mongodb 
+
+7) Flex Direction Tailwind css
+Tailwind CSS. (n.d.). Flex direction. https://tailwindcss.com/docs/flex-direction 
+
+8) Border Radius Tailwind css
+Tailwind CSS. (n.d.-a). Border Radius. https://tailwindcss.com/docs/border-radius 
+
+9) UseRouter in Next.js
+Next.js. (n.d.). Functions: UseRouter. Functions: useRouter | Next.js. https://nextjs.org/docs/app/api-reference/functions/use-router 
+
+10) Border Width Tailwind CSS 
+Tailwind CSS. (n.d.-b). Border Width. https://tailwindcss.com/docs/border-width 
