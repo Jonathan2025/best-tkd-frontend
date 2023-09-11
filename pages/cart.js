@@ -91,7 +91,8 @@ const CartPage = () => {
 
   // put the cart products into a useEffect
   useEffect(() => {
-    if (cartProducts){
+    // Fixed error - its better to use cartProducts.length > 0 because it will also make sure that cartProducts contain at least one element
+    if (cartProducts.length > 0){
       // Make a post request using axios, We will send the ids as the body
       axios.post('/api/cart', {ids:cartProducts}).then(response => {
         setProducts(response.data)
@@ -101,14 +102,15 @@ const CartPage = () => {
 
   // If we have an order success, then we want to clear the cart IF we have window 
   useEffect(()=> {
-    if (window?.location.href.includes('success')){
-      setIsSuccess(true)
-      clearCart()
-    }
     // Otherwise if the window is underfined then just exit out the useEffect
     if (typeof window === 'undefined') {
       return
     }
+    if (window?.location.href.includes('success')){
+      setIsSuccess(true)
+      clearCart()
+    }
+    
     
   }, [])
 
@@ -145,7 +147,7 @@ const CartPage = () => {
   // Now for each of the product we need to get the total cost 
   let total = 0 
   for (const productId of cartProducts){
-    const price = products.find(p => p._id === productId)?.price || 0 
+    const price = products.find(product => product._id === productId)?.price || 0 
     total += price
   }
 
